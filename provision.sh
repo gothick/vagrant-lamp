@@ -55,6 +55,12 @@ sed -i "s/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" ${mysql_config_f
 echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION" | mysql -u root --password=root
 echo "GRANT PROXY ON ''@'' TO 'root'@'%' WITH GRANT OPTION" | mysql -u root --password=root
 
+# Overwrite default site config with one that allows htaccess override
+cp /vagrant/vm_files/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Enable mod-rewrite in Apache
+a2enmod rewrite
+
 # Restart Services
 service apache2 restart
 service mysql restart
