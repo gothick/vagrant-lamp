@@ -40,6 +40,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		config.vm.synced_folder folder['host'], folder['guest'], folder['mount_options']
 	end
 
+    # VirtualBox specific stuff. The main thing I want to do is allow
+    # DNS, etc.
+	www.vm.provider :virtualbox do |vb|
+		# vb.customize ["modifyvm", :id, "--cpus", "2" ]
+	    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    	vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+	end
+
 	config.vm.provision "shell", path: "provision.sh"
 
 end
