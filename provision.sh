@@ -27,7 +27,7 @@ sed -i "s/^${IPADDR}.*//" /etc/hosts
 echo $IPADDR ubuntu.localhost >> /etc/hosts			# Just to quiet down some error messages
 
 # Install basic tools
-apt-get -y install build-essential binutils-doc git
+apt-get -y install build-essential binutils-doc git emacs24-nox
 
 # Install Apache
 apt-get -y install apache2
