@@ -43,9 +43,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # VirtualBox specific stuff. The main thing I want to do is allow
     # DNS, etc.
 	config.vm.provider :virtualbox do |vb|
-		# vb.customize ["modifyvm", :id, "--cpus", "2" ]
-	    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    	vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+	# vb.customize ["modifyvm", :id, "--cpus", "2" ]
+	  vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    	  vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+	  vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
 	end
 
 	config.vm.provision "shell", path: "provision.sh"
