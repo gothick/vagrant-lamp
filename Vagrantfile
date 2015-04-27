@@ -4,6 +4,8 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+require 'yaml'
+
 # We keep basic settings in vagrant_settings.yml. The idea is that
 # each of our web projects will include this project as a git submodule,
 # and we can override anything we need by providing a project-specific
