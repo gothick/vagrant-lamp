@@ -3,3 +3,4 @@
 .vagrant
 *~
 gitignored
+vm_files/**
