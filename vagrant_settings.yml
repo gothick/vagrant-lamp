@@ -1,7 +1,7 @@
 network:
-    ip_address: 192.168.4.14
-    hostname: vagrant.localhost
+    ip_address: 192.168.4.15
+    hostname: kwb.localhost
     aliases:
-        - www.vagrant.localhost
+        - www.kwb.localhost
 synced_folders:
     - { host: htdocs, guest: /var/www/html }
