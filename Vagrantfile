@@ -39,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	end
 
 	settings['synced_folders'].each do |folder|
-		config.vm.synced_folder folder['host'], folder['guest'], :mount_options => folder['mount_options']
+		config.vm.synced_folder folder['host'], folder['guest'], owner: folder['owner'], group: folder['group'], mount_options: folder['mount_options']
 	end
 
     # VirtualBox specific stuff. The main thing I want to do is allow
