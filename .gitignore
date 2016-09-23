@@ -4,3 +4,4 @@
 *~
 gitignored
 vm_files/**
+htdocs/cache/**
