@@ -24,7 +24,7 @@ if File.exists? ("../vagrant_settings.yml")
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "ubuntu/trusty64"
+    config.vm.box = "bento/ubuntu-16.04"
 
 	# Create a private network, which allows host-only access to the machine
 	# using a specific IP.

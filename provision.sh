@@ -1,7 +1,7 @@
 #!/bin/bash
 
-php_config_file="/etc/php5/apache2/php.ini"
-xdebug_config_file="/etc/php5/mods-available/xdebug.ini"
+php_config_file="/etc/php/7.0/apache2/php.ini"
+xdebug_config_file="/etc/php/7.0/mods-available/xdebug.ini"
 mysql_config_file="/etc/mysql/my.cnf"
 
 
@@ -22,9 +22,13 @@ fi
 # From the host machine
 ################################################################################
 
-IPADDR=$(/sbin/ifconfig eth0 | awk '/inet / { print $2 }' | sed 's/addr://')
+# MG For now I'm hardcoding enp0s3; works fine on Ubuntu, but probably not 
+# portable; possibly even not portable between boxes/VirtualBox versions.
+# In other words, my problem is that the new predictable network interface
+# names aren't predictable!
+IPADDR=$(/sbin/ifconfig enp0s3 | awk '/inet / { print $2 }' | sed 's/addr://')
 sed -i "s/^${IPADDR}.*//" /etc/hosts
-echo $IPADDR ubuntu.localhost >> /etc/hosts			# Just to quiet down some error messages
+echo $IPADDR kwb.localhost >> /etc/hosts			# Just to quiet down some error messages
 
 # Install basic tools
 apt-get -y install build-essential binutils-doc git emacs24-nox
@@ -32,9 +36,9 @@ apt-get -y install build-essential binutils-doc git emacs24-nox
 # Install Apache
 apt-get -y install apache2
 # And all the php things.
-apt-get -y install php5 php5-curl php5-mysql php5-sqlite php5-xdebug php5-gd
+apt-get -y install php php-curl php-mysql php-sqlite3 php-xdebug php-gd libapache2-mod-php php-mcrypt
 # Also want Imagemagick for testing
-apt-get -y install imagemagick php5-imagick
+apt-get -y install imagemagick php-imagick
 
 sed -i "s/display_startup_errors = Off/display_startup_errors = On/g" ${php_config_file}
 sed -i "s/display_errors = Off/display_errors = On/g" ${php_config_file}
@@ -69,6 +73,6 @@ service apache2 restart
 service mysql restart
 
 # Cleanup the default HTML file created by Apache
-rm /var/www/html/index.html
+rm /var/www/html/index.php
 
 touch /var/lock/vagrant-provision
