@@ -1,0 +1,3 @@
+[submodule "htdocs/oldtweets"]
+	path = htdocs/oldtweets
+	url = ssh://gothick@gothick.kilnhg.com/Repositories/Current/oldtweets

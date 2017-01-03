@@ -3,5 +3,6 @@ network:
     hostname: vagrant.localhost
     aliases:
         - www.vagrant.localhost
+        - oldtweets.gothick.org.uk.localhost
 synced_folders:
     - { host: htdocs, guest: /var/www/html, owner: www-data, group: www-data }
