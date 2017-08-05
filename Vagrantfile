@@ -46,6 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # DNS, etc.
 	config.vm.provider :virtualbox do |vb|
 	# vb.customize ["modifyvm", :id, "--cpus", "2" ]
+	  vb.memory = 1024
 	  vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     	  vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 	  vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
