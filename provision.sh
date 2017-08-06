@@ -32,9 +32,9 @@ apt-get -y install build-essential binutils-doc git emacs24-nox
 # Install Apache
 apt-get -y install apache2
 # And all the php things.
-apt-get -y install php5 php5-curl php5-mysql php5-sqlite php5-xdebug php5-gd
+apt-get -y install php7.0 php7.0-curl php7.0-mysql php7.0-sqlite php7.0-xdebug php7.0-gd
 # Also want Imagemagick for testing
-apt-get -y install imagemagick php5-imagick
+apt-get -y install imagemagick php-imagick
 
 sed -i "s/display_startup_errors = Off/display_startup_errors = On/g" ${php_config_file}
 sed -i "s/display_errors = Off/display_errors = On/g" ${php_config_file}
