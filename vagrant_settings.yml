@@ -3,5 +3,5 @@ network:
     hostname: vagrant.localhost
     aliases:
         - www.vagrant.localhost
-synced_folders:
-    - { host: htdocs, guest: /var/www/html, owner: www-data, group: www-data }
+#synced_folders:
+#    - { host: htdocs, guest: /var/www/html, owner: www-data, group: www-data }
