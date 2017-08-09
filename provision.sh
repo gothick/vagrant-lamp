@@ -4,6 +4,7 @@ php_config_file="/etc/php/7.0/apache2/php.ini"
 xdebug_config_file="/etc/php/7.0/mods-available/xdebug.ini"
 mysql_config_file="/etc/mysql/my.cnf"
 
+export DEBIAN_FRONTEND=noninteractive
 
 # Update the server
 apt-get update
@@ -74,7 +75,8 @@ a2enmod rewrite
 service apache2 restart
 service mysql restart
 
-# Cleanup the default HTML file created by Apache
-rm /var/www/html/index.html
+# Cleanup the default HTML file created by Apache, though if we've got our
+# /var/www/html mapped through VirtualBox, it may not exist.
+[ -e /var/www/html/index.html ] && rm /var/www/html/index.html
 
 touch /var/lock/vagrant-provision
