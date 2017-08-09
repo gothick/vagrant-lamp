@@ -1,7 +1,7 @@
 #!/bin/bash
 
-php_config_file="/etc/php5/apache2/php.ini"
-xdebug_config_file="/etc/php5/mods-available/xdebug.ini"
+php_config_file="/etc/php/7.0/apache2/php.ini"
+xdebug_config_file="/etc/php/7.0/mods-available/xdebug.ini"
 mysql_config_file="/etc/mysql/my.cnf"
 
 
@@ -22,9 +22,11 @@ fi
 # From the host machine
 ################################################################################
 
-IPADDR=$(/sbin/ifconfig eth0 | awk '/inet / { print $2 }' | sed 's/addr://')
-sed -i "s/^${IPADDR}.*//" /etc/hosts
-echo $IPADDR ubuntu.localhost >> /etc/hosts			# Just to quiet down some error messages
+# Doesn't seem to be needed with 16.04, or maybe it's a recent Vagrant that's
+# changed things. Either way, it's fine without.
+#IPADDR=$(/sbin/ifconfig eth0 | awk '/inet / { print $2 }' | sed 's/addr://')
+#sed -i "s/^${IPADDR}.*//" /etc/hosts
+#echo $IPADDR ubuntu.localhost >> /etc/hosts			# Just to quiet down some error messages
 
 # Install basic tools
 apt-get -y install build-essential binutils-doc git emacs24-nox
@@ -32,9 +34,13 @@ apt-get -y install build-essential binutils-doc git emacs24-nox
 # Install Apache
 apt-get -y install apache2
 # And all the php things.
-apt-get -y install php7.0 php7.0-curl php7.0-mysql php7.0-sqlite php7.0-xdebug php7.0-gd
-# Also want Imagemagick for testing
+apt-get -y install php7.0 php7.0-curl php7.0-mysql php7.0-sqlite php-xdebug php7.0-gd libapache2-mod-php7.0
+# Also want Imagemagick for various helpful manipulations
 apt-get -y install imagemagick php-imagick
+# And our crossword site uses QPDF and I can't be bothered
+# to make project-specific provisioning work here for just
+# that one thing :D
+apt-get -y install qpdf
 
 sed -i "s/display_startup_errors = Off/display_startup_errors = On/g" ${php_config_file}
 sed -i "s/display_errors = Off/display_errors = On/g" ${php_config_file}
