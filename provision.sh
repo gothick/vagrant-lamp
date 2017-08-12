@@ -30,12 +30,13 @@ fi
 #echo $IPADDR ubuntu.localhost >> /etc/hosts			# Just to quiet down some error messages
 
 # Install basic tools
-apt-get -y install build-essential binutils-doc git emacs24-nox
+apt-get -y install build-essential binutils-doc git emacs24-nox zip
 
 # Install Apache
 apt-get -y install apache2
 # And all the php things.
-apt-get -y install php7.0 php7.0-curl php7.0-mysql php7.0-sqlite php-xdebug php7.0-gd libapache2-mod-php7.0 php-xml
+apt-get -y install php7.0 php7.0-curl php7.0-mysql php7.0-sqlite php-xdebug php7.0-gd \
+ libapache2-mod-php7.0 php-xml php7.0-mbstring
 # Also want Imagemagick for various helpful manipulations
 apt-get -y install imagemagick php-imagick
 # And our crossword site uses QPDF and I can't be bothered
