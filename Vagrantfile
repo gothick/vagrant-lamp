@@ -24,7 +24,7 @@ if File.exists? ("../vagrant_settings.yml")
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "bento/ubuntu-16.04"
+    config.vm.box = "ubuntu/xenial64"
 
 	# Create a private network, which allows host-only access to the machine
 	# using a specific IP.
@@ -38,14 +38,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		config.hostsupdater.aliases = settings['network']['aliases']
 	end
 
-	settings['synced_folders'].each do |folder|
-		config.vm.synced_folder folder['host'], folder['guest'], owner: folder['owner'], group: folder['group'], mount_options: folder['mount_options']
+	if settings.has_key?('synced_folders')
+		settings['synced_folders'].each do |folder|
+			config.vm.synced_folder folder['host'], folder['guest'], owner: folder['owner'], group: folder['group'], mount_options: folder['mount_options']
+		end
 	end
 
     # VirtualBox specific stuff. The main thing I want to do is allow
     # DNS, etc.
 	config.vm.provider :virtualbox do |vb|
 	# vb.customize ["modifyvm", :id, "--cpus", "2" ]
+	  vb.memory = 1024
 	  vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     	  vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 	  vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]

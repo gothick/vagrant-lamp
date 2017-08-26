@@ -4,4 +4,4 @@ network:
     aliases:
         - www.kwb.localhost
 synced_folders:
-    - { host: htdocs, guest: /var/www/html, owner: www-data, group: www-data }
+    - { host: htdocs, guest: /var/www/html, owner: www-data, group: www-data, mount_options: [] }
