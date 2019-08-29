@@ -24,7 +24,7 @@ if File.exists? ("../vagrant_settings.yml")
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "ubuntu/xenial64"
+    config.vm.box = "ubuntu/bionic64"
 
 	# Create a private network, which allows host-only access to the machine
 	# using a specific IP.

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-php_config_file="/etc/php/7.0/apache2/php.ini"
-xdebug_config_file="/etc/php/7.0/mods-available/xdebug.ini"
+php_config_file="/etc/php/7.2/apache2/php.ini"
+xdebug_config_file="/etc/php/7.2/mods-available/xdebug.ini"
 mysql_config_file="/etc/mysql/my.cnf"
 
 export DEBIAN_FRONTEND=noninteractive
@@ -30,19 +30,22 @@ fi
 #echo $IPADDR ubuntu.localhost >> /etc/hosts			# Just to quiet down some error messages
 
 # Install basic tools
-apt-get -y install build-essential binutils-doc git emacs24-nox zip
+apt-get -y install build-essential binutils-doc git emacs25-nox zip
 
 # Install Apache
 apt-get -y install apache2
 # And all the php things.
-apt-get -y install php7.0 php7.0-curl php7.0-mysql php7.0-sqlite php-xdebug php7.0-gd \
- libapache2-mod-php7.0 php-xml php7.0-mbstring
+apt-get -y install php7.2 php7.2-curl php7.2-mysql php7.2-sqlite php-xdebug php7.2-gd \
+ libapache2-mod-php7.2 php-xml php7.2-mbstring
 # Also want Imagemagick for various helpful manipulations
 apt-get -y install imagemagick php-imagick
 # And our crossword site uses QPDF and I can't be bothered
 # to make project-specific provisioning work here for just
 # that one thing :D
 apt-get -y install qpdf
+
+# Composer is also helpful
+apt-get -y install composer
 
 sed -i "s/display_startup_errors = Off/display_startup_errors = On/g" ${php_config_file}
 sed -i "s/display_errors = Off/display_errors = On/g" ${php_config_file}
