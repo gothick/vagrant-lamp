@@ -35,7 +35,8 @@ apt-get -y install build-essential binutils-doc git emacs25-nox zip
 # Install Apache
 apt-get -y install apache2
 # And all the php things.
-apt-get -y install php7.2 php7.2-curl php7.2-mysql php7.2-sqlite php-xdebug php7.2-gd \
+apt-get -y install php7.2 php7.2-curl php7.2-mysql php7.2-sqlite \
+ php-xdebug php7.2-gd php7.2-zip \
  libapache2-mod-php7.2 php-xml php7.2-mbstring
 # Also want Imagemagick for various helpful manipulations
 apt-get -y install imagemagick php-imagick
