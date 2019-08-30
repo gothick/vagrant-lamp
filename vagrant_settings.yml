@@ -3,6 +3,6 @@ network:
     hostname: vagrant.localhost
     aliases:
         - www.vagrant.localhost
-#synced_folders:
-#    - { host: ~/Sites/, guest: /Sites, owner: www-data, group: www-data, mount_options: ["dmode=777","fmode=666"]}
+synced_folders:
+    - { host: ~/Sites/, guest: /Sites, owner: www-data, group: www-data, mount_options: ["dmode=777","fmode=666"]}
 
