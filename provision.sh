@@ -88,3 +88,9 @@ service mysql restart
 [ -e /var/www/html/index.html ] && rm /var/www/html/index.html
 
 touch /var/lock/vagrant-provision
+
+# Install Chrome for use by chrome-driver by Cruciverbal
+echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+apt-key adv --fetch-keys https://dl.google.com/linux/linux_signing_key.pub
+apt-get -y update
+apt-get -y install google-chrome-stable
