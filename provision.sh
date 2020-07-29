@@ -92,3 +92,4 @@ systemctl restart mysql
 
 touch /var/lock/vagrant-provision
 
+echo "Provision complete."
