@@ -10,7 +10,7 @@ require 'yaml'
 # each of our web projects will include this project as a git submodule,
 # and we can override anything we need by providing a project-specific
 # settings file in the parent directory (probably the project root.)
-# i.e. 
+# i.e.
 # project_directory
 #   vagrant_settings.yml <-- per-project settings
 #   vagrant <-- This project as a git submodule
@@ -24,7 +24,7 @@ if File.exists? ("../vagrant_settings.yml")
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "ubuntu/bionic64"
+    config.vm.box = "bento/ubuntu-20.04"
 
 	# Create a private network, which allows host-only access to the machine
 	# using a specific IP.
@@ -34,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	# to your hosts file
 	config.vm.hostname = settings['network']['hostname']
 
-	if settings['network'].has_key?('aliases') 
+	if settings['network'].has_key?('aliases')
 		config.hostsupdater.aliases = settings['network']['aliases']
 	end
 
